@@ -5,7 +5,7 @@ class m130730_023910_create_issue_user_and_assingment_tables extends CDbMigratio
 
     private $_prefix = 'trk_';
 
-	public function up() {
+    public function up() {
         // create issue table
         $this->createTable($this->_prefix . 'issue', array(
             'id'             => 'pk',
@@ -48,22 +48,22 @@ class m130730_023910_create_issue_user_and_assingment_tables extends CDbMigratio
         $this->addForeignKey('fk_issue_requester', $this->_prefix . 'issue', 'requester_id', $this->_prefix . 'user', 'id', 'CASCADE', 'RESTRICT');
         $this->addForeignKey('fk_project_user', $this->_prefix . 'project_user', 'project_id', $this->_prefix . 'project', 'id', 'CASCADE', 'RESTRICT');
         $this->addForeignKey('fk_user_project', $this->_prefix . 'project_user', 'user_id', $this->_prefix . 'user', 'id', 'CASCADE', 'RESTRICT');
-	}
+    }
 
-	public function down()
-	{
+    public function down()
+    {
         $this->truncateTable($this->_prefix . 'project_user');
         $this->truncateTable($this->_prefix . 'issue');
         $this->truncateTable($this->_prefix . 'user');
-	}
+    }
 
-	// Use safeUp/safeDown to do migration with transaction
-	public function safeUp()
-	{
-	}
+    // Use safeUp/safeDown to do migration with transaction
+    public function safeUp()
+    {
+    }
 
-	public function safeDown()
-	{
+    public function safeDown()
+    {
 
-	}
+    }
 }
