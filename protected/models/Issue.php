@@ -126,6 +126,8 @@ class Issue extends CActiveRecord
         $criteria->compare('create_user_id',$this->create_user_id);
         $criteria->compare('update_time',$this->update_time,true);
         $criteria->compare('update_user_id',$this->update_user_id);
+        $criteria->condition('project_id = :project_id');
+        $criteria->params(array( ':project_id' => $this->project_id ));
 
         return new CActiveDataProvider($this, array(
             'criteria'=>$criteria,
@@ -178,5 +180,15 @@ class Issue extends CActiveRecord
             self::STATUS_STARTED,
             self::STATUS_FINISH
         );
+    }
+
+    public function getStatusText() {
+        $statusOpt = $this->getStatusOptions();
+        return isset($statusOpt[$this->status_id]) ? $statusOpt[$this->status_id] : "Unknown Status: " . $statusOpt[$this->status_id] ;
+    }
+
+    public function getTypeText() {
+        $typeOpt = $this->getTypeOptions();
+        return (isset($typeOpt[$this->type_id])) ? $typeOpt[$this->type_id] : "Unknown Type: " . $typeOpt[$this->type_id] ;
     }
 }
