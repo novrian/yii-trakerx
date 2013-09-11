@@ -52,18 +52,17 @@ class m130730_023910_create_issue_user_and_assingment_tables extends CDbMigratio
 
     public function down()
     {
+        $this->dropForeignKey('fk_issue_project', 'trk_issue');
+        $this->dropForeignKey('fk_issue_owner', 'trk_issue');
+        $this->dropForeignKey('fk_issue_requester', 'trk_issue');
+        $this->dropForeignKey('fk_project_user', 'trk_project_user');
+        $this->dropForeignKey('fk_user_project', 'trk_project_user');
         $this->truncateTable($this->_prefix . 'project_user');
         $this->truncateTable($this->_prefix . 'issue');
         $this->truncateTable($this->_prefix . 'user');
-    }
-
-    // Use safeUp/safeDown to do migration with transaction
-    public function safeUp()
-    {
-    }
-
-    public function safeDown()
-    {
+        $this->dropTable($this->_prefix . 'project_user');
+        $this->dropTable($this->_prefix . 'issue');
+        $this->dropTable($this->_prefix . 'user');
 
     }
 }
