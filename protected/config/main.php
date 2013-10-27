@@ -39,6 +39,7 @@ return array(
             'urlFormat'=>'path',
             'showScriptName' => false,
             'rules'=>array(
+                'login' => 'site/login',
                 '<controller:\w+>/<id:\d+>'=>'<controller>/view',
                 '<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
                 '<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
@@ -83,5 +84,8 @@ return array(
     'params' => array(
         // this is used in contact page
         'adminEmail' => 'webmaster@example.com',
+        'salt' => '-*21Zg#2es97792I424zKg9S]MBb>^i8',
+        'key' => 'J6e2D0wH%IXTJR9@'
     ),
+
 );

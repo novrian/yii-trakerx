@@ -24,6 +24,6 @@ class m130911_215242_insert_user extends CDbMigration
 
     public function safeDown()
     {
-        return false;
+        $this->truncateTable('trk_user');
     }
 }

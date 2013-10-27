@@ -19,8 +19,11 @@
  * @property Issue[] $issues1
  * @property Project[] $trkProjects
  */
-class User extends CActiveRecord
+class User extends TrackerxAr
 {
+
+    public $password_repeat;
+
     /**
      * @return string the associated database table name
      */
@@ -37,10 +40,13 @@ class User extends CActiveRecord
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('username, email, password', 'required'),
-            array('create_user_id, update_user_id', 'numerical', 'integerOnly'=>true),
+            array('username, email, password, password_repeat', 'required'),
             array('username, email, password', 'length', 'max'=>255),
-            array('last_login_time, create_time, update_time', 'safe'),
+            array('username, email', 'unique'),
+            array('email', 'email'),
+            array('username', 'match', 'pattern' => '/^[a-zA-Z0-9\_]+$/'),
+            array('password', 'safe'),
+            array('password', 'compare', 'compareAttribute' => 'password_repeat'),
             // The following rule is used by search().
             // @todo Please remove those attributes that should not be searched.
             array('id, username, email, password, last_login_time, create_time, create_user_id, update_time, update_user_id', 'safe', 'on'=>'search'),
@@ -122,4 +128,22 @@ class User extends CActiveRecord
     {
         return parent::model($className);
     }
+
+    protected function afterValidate() {
+        parent::afterValidate();
+        if (!$this->hasErrors()) {
+            $this->password = $this->hashIt($this->password);
+        }
+    }
+
+    public function hashIt($pass) {
+        $hashed = hash('sha512', $pass . Yii::app()->params['key']);
+        $hashed = md5($hashed . Yii::app()->params['salt']);
+        return $hashed;
+    }
+
+    public function validatePass($pass) {
+        return $this->hashIt($pass) === $this->password;
+    }
+
 }
