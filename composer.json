@@ -1,0 +1,14 @@
+{
+    "name": "novrian/yii-trakerx",
+    "authors": [
+        {
+            "name": "Novrian Y.F.",
+            "email": "me@novrian.info"
+        }
+    ],
+    "require": {
+        "phpunit/phpunit": "3.7.*",
+        "phpunit/phpunit-selenium": ">=1.2",
+        "element-34/php-webdriver": "~1.12.0"
+    }
+}

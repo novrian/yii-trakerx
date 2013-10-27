@@ -1,5 +1,8 @@
 <?php
 
+// Composer Autoload
+require "vendor/autoload.php";
+
 // change the following paths if necessary
 $yii=dirname(__FILE__).'/../../lib/yii/framework/yii.php';
 $config=dirname(__FILE__).'/protected/config/main.php';

@@ -4,8 +4,11 @@
  * This file should be removed when the application is deployed for production.
  */
 
+// Composer Autoload
+require "vendor/autoload.php";
+
 // change the following paths if necessary
-$yii=dirname(__FILE__).'/../yii/framework/yii.php';
+$yii='/home/k4k1-c0der/lib/yii/framework/yii.php';
 $config=dirname(__FILE__).'/protected/config/test.php';
 
 // remove the following line when in production mode
