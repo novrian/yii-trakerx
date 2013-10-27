@@ -22,7 +22,7 @@
  * @property User $owner
  * @property Project $project
  */
-class Issue extends CActiveRecord
+class Issue extends TrackerxAr
 {
 
     const TYPE_BUG = 0;
